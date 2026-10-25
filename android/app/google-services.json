@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "270780297620",
+    "project_id": "college-salesman",
+    "storage_bucket": "college-salesman.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270780297620:android:2e8ac1fba368340207df81",
+        "android_client_info": {
+          "package_name": "com.example.firebase_flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNEOThUyLYFzUhgxFBaGk1gr7LaIOJ4sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
