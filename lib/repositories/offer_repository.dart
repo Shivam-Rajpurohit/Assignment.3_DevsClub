@@ -26,7 +26,11 @@ class OfferRepository {
         snapshot.docs.map((doc) => Offer.fromFirestore(doc)).toList());
   }
 
-  Future<void> updateOfferStatus(String offerId, String status) async {
+  Future<void> updateOfferStatus(String offerId, String status, String listingId) async {
     await _db.collection('offers').doc(offerId).update({'status': status});
+
+    if (status == 'accepted') {
+      await _db.collection('listings').doc(listingId).update({'status': 'sold'});
+    }
   }
 }

@@ -5,6 +5,7 @@ import 'auth/login_screen.dart';
 import 'seller/seller_dashboard_screen.dart';
 import 'buyer/buyer_marketplace_screen.dart';
 import 'buyer/my_offers_screen.dart';
+import 'settings/settings_screen.dart';
 
 class NavigationScreen extends ConsumerStatefulWidget {
   const NavigationScreen({super.key});
@@ -20,6 +21,7 @@ class _NavigationScreenState extends ConsumerState<NavigationScreen> {
     const BuyerMarketplaceScreen(),
     const MyOffersScreen(),
     const SellerDashboardScreen(),
+    const SettingsScreen(),
   ];
 
   @override
@@ -33,6 +35,7 @@ class _NavigationScreenState extends ConsumerState<NavigationScreen> {
           NavigationDestination(icon: Icon(Icons.store), label: 'Market'),
           NavigationDestination(icon: Icon(Icons.local_offer), label: 'My Offers'),
           NavigationDestination(icon: Icon(Icons.dashboard), label: 'Selling'),
+          NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
     );

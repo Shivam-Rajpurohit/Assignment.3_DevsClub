@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/listing_providers.dart';
 import '../../providers/offer_providers.dart';
 import 'create_listing_screen.dart';
+import '../auth/auth_provider.dart';
 
 class SellerDashboardScreen extends ConsumerWidget {
   const SellerDashboardScreen({super.key});
@@ -13,7 +14,19 @@ class SellerDashboardScreen extends ConsumerWidget {
     final offers = ref.watch(sellerOffersProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Seller Dashboard')),
+      appBar: AppBar(
+        title: const Text('Seller Dashboard', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Log Out',
+            onPressed: () {
+              ref.read(authRepositoryProvider).signOut();
+            },
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateListingScreen())),
         child: const Icon(Icons.add),
@@ -46,8 +59,14 @@ class SellerDashboardScreen extends ConsumerWidget {
                 trailing: o.status == 'pending' ? Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    IconButton(icon: const Icon(Icons.check, color: Colors.green), onPressed: () => ref.read(offerRepositoryProvider).updateOfferStatus(o.id, 'accepted')),
-                    IconButton(icon: const Icon(Icons.close, color: Colors.red), onPressed: () => ref.read(offerRepositoryProvider).updateOfferStatus(o.id, 'rejected')),
+                    IconButton(
+                        icon: const Icon(Icons.check, color: Colors.green),
+                        onPressed: () => ref.read(offerRepositoryProvider).updateOfferStatus(o.id, 'accepted', o.listingId)
+                    ),
+                    IconButton(
+                        icon: const Icon(Icons.close, color: Colors.red),
+                        onPressed: () => ref.read(offerRepositoryProvider).updateOfferStatus(o.id, 'rejected', o.listingId)
+                    ),
                   ],
                 ) : null,
               )).toList(),
